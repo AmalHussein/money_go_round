@@ -9,23 +9,23 @@ namespace :kiva do
   	json_files.delete("..")
   	json_files.each do |json_file|
   		lenders = JSON.parse(IO.read "#{basedir}/#{json_file}")["lenders"]
-  		lenders.each do |lender|
-  			binding.pry
-  			Lender.find_or_create_by(kiva_uid: lender["uid"]) do |lender|
-  				lender.name = lender["name"]
-  				lender.lender_id = lender["lender_id"]
-  				lender.image_id = lender["image"]["id"]
-  				lender.whereabouts = lender["whereabouts"]
-  				lender.image_template_id = lender["image"]["template_id"]
-  				lender.kiva_uid = lender["uid"]
-  				lender.member_since = lender["member_since"]
-  				lender.personal_url = lender["personal_url"]
-  				lender.occupation = lender["occupation"]
-  				lender.loan_because = lender["loan_because"]
-  				lender.occupational_info = lender["occupational_info"]
-  				lender.loan_count = lender["loan_count"]
-  				lender.inviter_id = lender["inviter_id"]
-  				lender.invitee_count = lender["invitee_count"]
+  		lenders.each do |kiva_lender|
+  			Lender.find_or_create_by(kiva_uid: kiva_lender["uid"]) do |lender|
+  				puts "Importing: #{lender["name"]}"
+  				lender.name = kiva_lender["name"]
+  				lender.lender_id = kiva_lender["lender_id"]
+  				lender.image_id = kiva_lender["image"]["id"]
+  				lender.whereabouts = kiva_lender["whereabouts"]
+  				lender.image_template_id = kiva_lender["image"]["template_id"]
+  				lender.kiva_uid = kiva_lender["uid"]
+  				lender.member_since = kiva_lender["member_since"]
+  				lender.personal_url = kiva_lender["personal_url"]
+  				lender.occupation = kiva_lender["occupation"]
+  				lender.loan_because = kiva_lender["loan_because"]
+  				lender.occupational_info = kiva_lender["occupational_info"]
+  				lender.loan_count = kiva_lender["loan_count"]
+  				lender.inviter_id = kiva_lender["inviter_id"]
+  				lender.invitee_count = kiva_lender["invitee_count"]
 				end
   		end
   	end
