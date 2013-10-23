@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  lender_id: 1
+  image_id: 1
+  whereabouts: MyString
+  image_template_id: 1
+  kiva_uid: MyString
+  member_since: 2013-10-23 17:09:45
+  personal_url: MyString
+  occupation: MyString
+  loan_because: MyString
+  occupational_info: MyString
+  loan_count: 1
+  invitee_count: 1
+  inviter_id: 1
+
+two:
+  name: MyString
+  lender_id: 1
+  image_id: 1
+  whereabouts: MyString
+  image_template_id: 1
+  kiva_uid: MyString
+  member_since: 2013-10-23 17:09:45
+  personal_url: MyString
+  occupation: MyString
+  loan_because: MyString
+  occupational_info: MyString
+  loan_count: 1
+  invitee_count: 1
+  inviter_id: 1
