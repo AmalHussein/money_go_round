@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131023210945) do
+ActiveRecord::Schema.define(version: 20131023221913) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20131023210945) do
     t.text     "occupational_info"
     t.integer  "loan_count"
     t.integer  "invitee_count"
-    t.integer  "inviter_id"
+    t.integer  "inviter_id",        limit: 8
     t.datetime "created_at"
     t.datetime "updated_at"
   end
