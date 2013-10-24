@@ -26,11 +26,11 @@ namespace :kiva do
   				lender.loan_count = kiva_lender["loan_count"]
   				lender.inviter_id = kiva_lender["inviter_id"]
   				lender.invitee_count = kiva_lender["invitee_count"]
+          binding.pry 
 				end
   		end
   	end
   end
-
 
 
   desc "Imports all loans from json"
@@ -44,7 +44,7 @@ namespace :kiva do
   		loans.each do |kiva_loan|
   			# binding.pry
   			Loan.find_or_create_by(kivaloan_id: kiva_loan["id"]) do |loan|
-          loan.id = kiva_loan["id"] #number
+          loan.kivaloan_id = kiva_loan["id"] #number
           loan.name = kiva_loan["name"] #sting
           loan.description_languages = kiva_loan["description"]["languages"] #string
           loan.description_texts_en = kiva_loan["description"]["texts"]['en'] #text
