@@ -10,9 +10,12 @@ namespace :kiva do
   	json_files.each do |json_file|
   		lenders = JSON.parse(IO.read "#{basedir}/#{json_file}")["lenders"]
   		lenders.each do |kiva_lender|
-  			Lender.find_or_create_by(kiva_uid: kiva_lender["uid"]) do |lender|
+  			# Lender.find_or_create_by!(kiva_uid: kiva_lender["uid"]) do |lender|
+        begin
+          Lender.create! do |lender|
   				puts "Importing: #{kiva_lender["name"]}"
-  				lender.name = kiva_lender["name"]
+          lender.kiva_uid = kiva_lender["uid"]
+          lender.name = kiva_lender["name"]
   				lender.lender_id = kiva_lender["lender_id"]
   				lender.image_id = kiva_lender["image"]["id"]
   				lender.whereabouts = kiva_lender["whereabouts"]
@@ -26,8 +29,12 @@ namespace :kiva do
   				lender.loan_count = kiva_lender["loan_count"]
   				lender.inviter_id = kiva_lender["inviter_id"]
   				lender.invitee_count = kiva_lender["invitee_count"]
-          binding.pry 
+    #      binding.pry 
 				end
+      rescue Exception => e
+        puts "Exception #{e} for lender name #{kiva_lender['name']}"
+        puts "Don't stop adding lenders!!!"
+      end
   		end
   	end
   end
@@ -42,8 +49,10 @@ namespace :kiva do
   	json_files.each do |json_file|
   		loans = JSON.parse(IO.read "#{basedir}/#{json_file}")["loans"]
   		loans.each do |kiva_loan|
-  			# binding.pry
-  			Loan.find_or_create_by(kivaloan_id: kiva_loan["id"]) do |loan|
+        begin 
+  		    Loan.create! do |loan|
+          puts "Importing: #{kiva_loan["name"]}"
+  			# Loan.find_or_create_by(kivaloan_id: kiva_loan["id"]) do |loan|
           loan.kivaloan_id = kiva_loan["id"] #number
           loan.name = kiva_loan["name"] #sting
           loan.description_languages = kiva_loan["description"]["languages"] #string
@@ -88,10 +97,13 @@ namespace :kiva do
           loan.journal_totals_entries = kiva_loan['journal_totals']['entries'] #numb
           loan.journal_bulkEntries = kiva_loan['journal_totals']['bulkEntries'] #numb
 				end
+      rescue Exception => e
+        puts "Exception #{e} for lender name #{kiva_loan['name']}"
+        puts "Don't stop adding loans!!!"
   		end
+    end 
   	end
-  end
-  
+  end 
 end 
 
 
