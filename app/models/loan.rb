@@ -3,15 +3,13 @@ class Loan < ActiveRecord::Base
 	has_many :lenders 
 
 
-# def loans_by_country
-# 		@loans = Loans.select("")
-# 	end 
+def self.by_country
+	 loan = Loan.count(:group => "location_country").sort_by{ |pair| pair[1] } 
+	 loan.unshift(['Country', 'Loans'])
+	end 
 
 
-# Order.select("date(created_at) as ordered_date, sum(price) as total_price").group("date(created_at)")
 
-# 	SELECT date(created_at) as ordered_date, sum(price) as total_price
-# FROM orders
-# GROUP BY date(created_at)
+
 
 end
