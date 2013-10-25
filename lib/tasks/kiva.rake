@@ -105,13 +105,23 @@ namespace :kiva do
      end 
   	end
   end 
-end 
 
 
-  desc "Imports all loans-lenders from json"
-  task import_json_loans_lenders: :environment do
-  	basedir = "#{Rails.root}/data/loans_lenders"
-  	json_files = Dir.new(basedir).entries
-  	binding.pry
-  end
+
+  # desc "Imports all loans_lenders from json"
+  # task import_json_loans_lenders: :environment do
+  # 	basedir = "#{Rails.root}/data/loans_lenders"
+  # 	json_files = Dir.new(basedir).entries
+  #   json_files.delete(".")
+  #   json_files.delete("..")
+  #   json_files.each do |json_file|
+  #   loans_lenders = JSON.parse(IO.read "#{basedir}/#{json_file}")["loans_lenders"]
+  #   loans_lenders.each do |loan_lender|
+  #   binding.pry
+  #   #begin
+  #   LoanLender.create! do |loan_lender|
+
+  # end
+
+end
 
