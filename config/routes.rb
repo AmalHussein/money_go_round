@@ -1,6 +1,6 @@
 MoneyGoRound::Application.routes.draw do
 
-  root: => 'home#index'
+  root :to => 'homes#index'
   resources :lenders
   resources :loans
 

@@ -13,7 +13,7 @@ namespace :kiva do
   			# Lender.find_or_create_by!(kiva_uid: kiva_lender["uid"]) do |lender|
         begin
           Lender.create! do |lender|
-          #binding.pry
+          binding.pry
   				puts "Importing: #{kiva_lender["name"]}"
           lender.kiva_uid = kiva_lender["uid"]
           lender.name = kiva_lender["name"]
