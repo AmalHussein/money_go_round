@@ -16,3 +16,4 @@ kiva_data.dump
 /log/*.log
 /tmp
 /data
+/controllers/oauth_controller.rb
