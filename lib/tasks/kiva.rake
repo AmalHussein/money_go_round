@@ -10,6 +10,7 @@ namespace :kiva do
   	json_files.each do |json_file|
   		lenders = JSON.parse(IO.read "#{basedir}/#{json_file}")["lenders"]
   		lenders.each do |kiva_lender|
+        #binding.pry
   			# Lender.find_or_create_by!(kiva_uid: kiva_lender["uid"]) do |lender|
         begin
           Lender.create! do |lender|
@@ -19,6 +20,7 @@ namespace :kiva do
   				lender.lender_id = kiva_lender["lender_id"]
   				lender.image_id = kiva_lender["image"]["id"]
   				lender.whereabouts = kiva_lender["whereabouts"]
+          lender.country_code= kiva_lender["country_code"]
   				lender.image_template_id = kiva_lender["image"]["template_id"]
   				lender.kiva_uid = kiva_lender["uid"]
   				lender.member_since = kiva_lender["member_since"]
