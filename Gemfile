@@ -12,6 +12,12 @@ gem 'lazy_high_charts'
 #pry-rails gem
 gem 'pry-rails'
 
+#for rails oauth plugin 
+gem "oauth-plugin", "~> 0.4.0"
+
+#gem for oauth in ruby
+gem 'oauth'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
