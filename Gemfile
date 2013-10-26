@@ -6,6 +6,10 @@ gem 'rails', '4.0.0'
 # Use postgresql as the database for Active Record
 gem 'pg'
 
+#lazy-charts gem for data visualization
+gem 'lazy_high_charts'
+
+#pry-rails gem
 gem 'pry-rails'
 
 # Use SCSS for stylesheets
