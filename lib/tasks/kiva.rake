@@ -10,8 +10,6 @@ namespace :kiva do
   	json_files.each do |json_file|
   		lenders = JSON.parse(IO.read "#{basedir}/#{json_file}")["lenders"]
   		lenders.each do |kiva_lender|
-        #binding.pry
-  			# Lender.find_or_create_by!(kiva_uid: kiva_lender["uid"]) do |lender|
         begin
           Lender.create! do |lender|
   				puts "Importing: #{kiva_lender["name"]}"
@@ -31,7 +29,6 @@ namespace :kiva do
   				lender.loan_count = kiva_lender["loan_count"]
   				lender.inviter_id = kiva_lender["inviter_id"]
   				lender.invitee_count = kiva_lender["invitee_count"]
-    #      binding.pry 
 				end
       rescue Exception => e
         puts "Exception #{e} for lender name #{kiva_lender['name']}"
@@ -51,11 +48,9 @@ namespace :kiva do
   	json_files.each do |json_file|
   		loans = JSON.parse(IO.read "#{basedir}/#{json_file}")["loans"]
   		loans.each do |kiva_loan|
-        #binding.pry
         begin 
   		    Loan.create! do |loan|
           puts "Importing: #{kiva_loan["name"]}"
-  			# Loan.find_or_create_by(kivaloan_id: kiva_loan["id"]) do |loan|
           loan.kivaloan_id = kiva_loan["id"] #number
           loan.name = kiva_loan["name"] #sting
           loan.description_languages = kiva_loan["description"]["languages"].first #string
