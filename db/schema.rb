@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131027142006) do
+ActiveRecord::Schema.define(version: 20131027201114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,15 @@ ActiveRecord::Schema.define(version: 20131027142006) do
     t.datetime "updated_at"
     t.string   "country_code"
   end
+
+  create_table "loan_lenders", id: false, force: true do |t|
+    t.integer "kivaloan_id"
+    t.text    "kiva_uid"
+  end
+
+  add_index "loan_lenders", ["kiva_uid"], name: "index_loan_lenders_on_kiva_uid", using: :btree
+  add_index "loan_lenders", ["kivaloan_id", "kiva_uid"], name: "index_loan_lenders_on_kivaloan_id_and_kiva_uid", using: :btree
+  add_index "loan_lenders", ["kivaloan_id"], name: "index_loan_lenders_on_kivaloan_id", using: :btree
 
   create_table "loans", force: true do |t|
     t.integer  "kivaloan_id"
@@ -94,15 +103,6 @@ ActiveRecord::Schema.define(version: 20131027142006) do
     t.integer  "journal_totals_entries"
     t.integer  "journal_bulkEntries"
   end
-
-  create_table "loans_lenders", id: false, force: true do |t|
-    t.integer "kivaloan_id"
-    t.string  "kiva_uid"
-  end
-
-  add_index "loans_lenders", ["kiva_uid"], name: "index_loans_lenders_on_kiva_uid", using: :btree
-  add_index "loans_lenders", ["kivaloan_id", "kiva_uid"], name: "index_loans_lenders_on_kivaloan_id_and_kiva_uid", using: :btree
-  add_index "loans_lenders", ["kivaloan_id"], name: "index_loans_lenders_on_kivaloan_id", using: :btree
 
   create_table "users", force: true do |t|
     t.datetime "created_at"

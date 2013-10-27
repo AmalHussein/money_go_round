@@ -12,6 +12,10 @@ gem 'lazy_high_charts'
 #pry-rails gem
 gem 'pry-rails'
 
+#kiva gem for api
+
+gem 'kiva'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
