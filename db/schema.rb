@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131026000752) do
+ActiveRecord::Schema.define(version: 20131027142006) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "consumer_tokens", force: true do |t|
+    t.integer  "user_id"
+    t.string   "type",         limit: 30
+    t.string   "token"
+    t.string   "secret"
+    t.string   "callback_url"
+    t.string   "verifier",     limit: 20
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "consumer_tokens", ["token"], name: "index_consumer_tokens_on_token", unique: true, using: :btree
 
   create_table "lenders", force: true do |t|
     t.string   "name"
@@ -80,6 +93,20 @@ ActiveRecord::Schema.define(version: 20131026000752) do
     t.datetime "paid_date"
     t.integer  "journal_totals_entries"
     t.integer  "journal_bulkEntries"
+  end
+
+  create_table "loans_lenders", id: false, force: true do |t|
+    t.integer "kivaloan_id"
+    t.string  "kiva_uid"
+  end
+
+  add_index "loans_lenders", ["kiva_uid"], name: "index_loans_lenders_on_kiva_uid", using: :btree
+  add_index "loans_lenders", ["kivaloan_id", "kiva_uid"], name: "index_loans_lenders_on_kivaloan_id_and_kiva_uid", using: :btree
+  add_index "loans_lenders", ["kivaloan_id"], name: "index_loans_lenders_on_kivaloan_id", using: :btree
+
+  create_table "users", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
