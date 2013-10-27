@@ -113,10 +113,13 @@ namespace :kiva do
     json_files.delete("..")
     json_files.each do |json_file|
     loans_lenders = JSON.parse(IO.read "#{basedir}/#{json_file}")["loans_lenders"]
-    loans_lenders.each do |loan_lender|
-    binding.pry
+    loans_lenders.each do |kivaloan_lender|
+    #binding.pry
     #begin
     LoanLender.create! do |loan_lender|
+    puts "Importing: #{loan_lender["id"]}"
+    loan_lender.kivaloan_id = kivaloan_lender["id"]
+    loan_lender.kiva_uid = kivaloan_lender["lender_ids"].inspect
     end
   end 
 end
