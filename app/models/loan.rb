@@ -1,6 +1,6 @@
 class Loan < ActiveRecord::Base
 	#has_many :payments 
-	has_many :lenders 
+	has_and_belongs_to_many :lenders 
 
 
 def self.by_country
