@@ -9,6 +9,9 @@ gem 'pg'
 #lazy-charts gem for data visualization
 gem 'lazy_high_charts'
 
+gem 'omniauth-kiva', :git => "git@github.com:kiva/omniauth-kiva.git"
+
+
 #pry-rails gem
 gem 'pry-rails'
 
