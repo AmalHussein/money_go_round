@@ -1,7 +1,7 @@
 class Lender < ActiveRecord::Base
-	has_many :borrowers , through: :loans
+	has_and_belongs_to_many :loans
 
-# 	def lenders_by_country
+# 	def lender_by_country
 # 		@lenders = Lender.select(:)
 # 	end 
 
