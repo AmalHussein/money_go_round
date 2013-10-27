@@ -1,36 +1,32 @@
-require 'rubygems'
-require 'oauth'
-require 'oauth/consumer'
-require 'json'
+# require 'rubygems'
+# require 'oauth'
+# require 'oauth/consumer'
+# require 'json'
 
-class OauthController 
- 
-  @oauth_client_id = 'com.herokuapp.moneygoround'
-  @oauth_client_secret = 'uzQtwxHsDxviwxlxDxolBrvuyzrDmwnq'
-  @oauth_callback_url = 'https://www.google.com'
-
+class OauthController < ApplicationController
 
   def oauth_kiva 
-    if :oauth
-       @consumer=OAuth::Consumer.new @oauth_client_id,
-                                     @oauth_client_secret,
-                                     {:site=>"https://api.kivaws.org",
-                                     :scheme => :header,
-                                     :request_token_path => '/oauth/request_token',
-                                     :access_token_path => '/oauth/access_token',
-                                     :authorize_url => 'https://www.kiva.org/oauth/authorize'
-                                     }
-       session[:consumer] = @consumer
-       @request_token=@consumer.get_request_token({:oauth_callback => @oauth_callback_url})
-       session[:request_token] = @request_token
-       session[:request_token_token] = @request_token.token
-       session[:request_token_secret] = @request_token.secret
-       @request_token.authorize_url
-       redirect_to @request_token.authorize_url + '&response_type=code&client_id=' + @oauth_client_id + '&scope=user_email&oauth_callback=' + @oauth_callback_url
-    else
-      # If OAuth turned off then do something else
-      # password_authentication
-    end
+    oauth_client_id = 'com.herokuapp.moneygoround'
+    oauth_client_secret = 'uzQtwxHsDxviwxlxDxolBrvuyzrDmwnq'
+    oauth_callback_url = 'http://localhost:3000/oauth_callback'
+
+    consumer = OAuth::Consumer.new(oauth_client_id,
+                                 oauth_client_secret,
+                                 { site: "https://api.kivaws.org",
+                                   scheme: :header,
+                                   request_token_path: '/oauth/request_token',
+                                   access_token_path: '/oauth/access_token',
+                                   authorize_url: 'https://www.kiva.org/oauth/authorize'
+                                 })
+    # session[:consumer] = consumer
+    binding.pry
+    ## request_token = consumer.get_request_token({:oauth_callback => oauth_callback_url})
+    # session[:request_token] = request_token
+    # session[:request_token_token] = request_token.token
+    # session[:request_token_secret] = request_token.secret
+#    redirect_to request_token.authorize_url + '&response_type=code&client_id=' + oauth_client_id + '&scope=user_email&oauth_callback=' + oauth_callback_url
+redirect_to consumer.authorize_url + '&response_type=code&client_id=' + oauth_client_id + '&scope=user_email&oauth_callback=' + oauth_callback_url
+
   end  
 
   def oauth_callback

@@ -4,7 +4,7 @@ class Loan < ActiveRecord::Base
 
 
 def self.by_country
-	 loan = Loan.count(:group => "location_country").sort_by{ |pair| pair[1] } 
+	 loan = Loan.all.count(:group => "location_country").sort_by{ |pair| pair[1] } 
 	 loan.unshift(['Country', 'Loans'])
 	end 
 
