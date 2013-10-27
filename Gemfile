@@ -14,7 +14,7 @@ gem 'pry-rails'
 
 #kiva gem for api
 
-gem 'kiva'
+gem "kiva", "~> 0.0.2"
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
