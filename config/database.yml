@@ -19,15 +19,18 @@ development:
   encoding: unicode
   database: money_go_round_development
   pool: 5
+  password: 
 
 test:
   adapter: postgresql
   encoding: unicode
   database: money_go_round_test
   pool: 5
+  password: 
 
 production:
   adapter: postgresql
   encoding: unicode
   database: money_go_round_production
   pool: 5
+  password: 
