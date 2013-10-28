@@ -4,6 +4,7 @@ class Loan < ActiveRecord::Base
 
 #Methods for the Data Visualization 
 def self.by_country
+<<<<<<< HEAD
 	loan = Loan.count(:group => "location_country").sort_by{ |pair| pair[1] } 
 	loan.unshift(['Country', 'Loans'])
 end 
@@ -13,6 +14,11 @@ end
 require 'kiva'
 
 #Methods for my API Calls
+=======
+	 loan = Loan.all.count(:group => "location_country").sort_by{ |pair| pair[1] } 
+	 loan.unshift(['Country', 'Loans'])
+	end 
+>>>>>>> oauth
 
 def self.recent
 	newest = Kiva::Loan.load_newest

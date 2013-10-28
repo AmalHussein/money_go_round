@@ -12,9 +12,17 @@ gem 'lazy_high_charts'
 #pry-rails gem
 gem 'pry-rails'
 
+<<<<<<< HEAD
 #kiva gem for api
 
 gem "kiva", "~> 0.0.2"
+=======
+# #for rails oauth plugin 
+# gem "oauth-plugin", "~> 0.4.0"
+
+# #gem for oauth in ruby
+gem 'oauth'
+>>>>>>> oauth
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'

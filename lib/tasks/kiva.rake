@@ -113,6 +113,7 @@ namespace :kiva do
     json_files.delete("..")
     json_files.each do |json_file|
     loans_lenders = JSON.parse(IO.read "#{basedir}/#{json_file}")["loans_lenders"]
+<<<<<<< HEAD
     loans_lenders.each do |kivaloan_lender|
     begin 
     LoanLender.create! do |loan_lender|
@@ -126,6 +127,15 @@ namespace :kiva do
     end
   end 
 end
+=======
+    loans_lenders.each do |loan_lender|
+    binding.pry
+    #begin
+    LoanLender.create! do |loan_lender|
+    end 
+  end 
+end 
+>>>>>>> oauth
   end
 
 end
