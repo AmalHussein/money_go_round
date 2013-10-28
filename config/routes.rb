@@ -4,7 +4,8 @@ MoneyGoRound::Application.routes.draw do
   resources :lenders
   resources :loans
   get 'authorize_kiva' => 'oauth#oauth_kiva', as: :authorize_kiva
-  get 'oauth_callback' => 'oauth#oauth_callback'
+  get 'oauth/callback' => 'oauth#oauth_callback'
+end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -59,4 +60,4 @@ MoneyGoRound::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-end
+
