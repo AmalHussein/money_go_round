@@ -1,7 +1,7 @@
 # if you are not using a Gemfile then uncomment the below 4 lines
 require 'rubygems'
-require 'oauth'
-require 'oauth/consumer'
+#require 'oauth'
+#require 'oauth/consumer'
 require 'json'
 
 class OauthController < ApplicationController
@@ -37,11 +37,6 @@ class OauthController < ApplicationController
     json["user_email"]["email"]
   end
 end
-
-
-
-
-
 
 
 # # require 'rubygems'
