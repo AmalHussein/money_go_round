@@ -10,7 +10,7 @@ class OauthController < ApplicationController
     oauth_client_id = 'com.herokuapp.moneygoround'
     oauth_client_secret = 'uzQtwxHsDxviwxlxDxolBrvuyzrDmwnq'
     # note that your callback should be like https://mydomain.com/oauth/callback
-    oauth_callback_url = 'http://moneygoround.herokuapp.com/oauth/callback' 
+    oauth_callback_url = 'https://moneygoround.herokuapp.com/oauth/callback' 
 
     @consumer = OAuth::Consumer.new(oauth_client_id,
                                  oauth_client_secret,
